@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Toilet Status</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+html, body {
+  height: 100%;
+}
+
+body {
+  background: yellow;
+}
+
+body.free {
+  background: green;
+}
+
+body.occupied {
+  background: red;
+}
+</style>
+<script>
+function request() {
+  $.ajax("status", {
+    success: function(data) {
+      $(document.body).removeClass("occupied free");
+      console.log(data)
+      if (data.status == "free" || data.status == "occupied") {
+        $(document.body).addClass(data.status);
+      }
+    },
+    error: function(data) {
+      $(document.body).removeClass("occupied free");
+    },
+    complete: function() {
+      setTimeout(request, 1500);
+    }
+  });
+}
+
+$(request);
+</script>
+</head>
+<body>
+</body>
+</html>
