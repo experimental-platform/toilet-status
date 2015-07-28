@@ -25,7 +25,6 @@ function request() {
   $.ajax("status", {
     success: function(data) {
       $(document.body).removeClass("occupied free");
-      console.log(data)
       if (data.status == "free" || data.status == "occupied") {
         $(document.body).addClass(data.status);
       }
