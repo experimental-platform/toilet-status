@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var storagePath = "/data/toilet_status.txt";
+var storagePath = "./toilet_status.txt";
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -13,8 +13,12 @@ app.get('/update', function(req, res) {
 });
 
 app.get('/status', function(req, res) {
-  var data = fs.readFileSync(storagePath);
-  res.json(JSON.parse(data));
+  try {
+    var data = fs.readFileSync(storagePath);
+    res.json(JSON.parse(data));
+  } catch(e) {
+    res.json({ status: "no data yet" });
+  }
 });
 
 app.listen(app.get('port'), function() {
