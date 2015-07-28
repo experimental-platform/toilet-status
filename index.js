@@ -7,8 +7,8 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/update', function(req, res) {
-  console.log(new Date().toString(), "Received update:", res.params.status);
-  fs.writeFileSync(storagePath, JSON.stringify({ status: res.params.status }));
+  console.log(new Date().toString(), "Received update:", req.params.status);
+  fs.writeFileSync(storagePath, JSON.stringify({ status: req.params.status }));
   res.json({ success: true });
 });
 
