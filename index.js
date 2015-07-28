@@ -1,14 +1,14 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var storagePath = "./toilet_status.txt";
+var storagePath = "./toilet_status.txt"; // TODO: permission denied in /data
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/update', function(req, res) {
-  console.log(new Date().toString(), "Received update:", req.params.status);
-  fs.writeFileSync(storagePath, JSON.stringify({ status: req.params.status }));
+  console.log(new Date().toString(), "Received update:", req.query.status);
+  fs.writeFileSync(storagePath, JSON.stringify({ status: req.query.status }));
   res.json({ success: true });
 });
 
