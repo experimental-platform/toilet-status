@@ -25,11 +25,9 @@ function request() {
   $.ajax("status", {
     success: function(data) {
       $(document.body).removeClass("occupied free");
-      data.status = "free"
       if (data.status == "free" || data.status == "occupied") {
         $(document.body).addClass(data.status);
-        $("#favicon-shortcut").attr("href","/favicon-" + data.status + ".ico");
-        $("#favicon-icon").attr("href","/favicon-" + data.status + ".ico");
+        $("#favicon-icon, #favicon-shortcut").attr("href","/favicon-" + data.status + ".ico");
       }
     },
     error: function(data) {
