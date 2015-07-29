@@ -27,6 +27,7 @@ function request() {
       $(document.body).removeClass("occupied free");
       if (data.status == "free" || data.status == "occupied") {
         $(document.body).addClass(data.status);
+        $("#favicon-icon, #favicon-shortcut").attr("href","/favicon-" + data.status + ".ico");
       }
     },
     error: function(data) {
@@ -40,6 +41,9 @@ function request() {
 
 $(request);
 </script>
+<head>
+<link id="favicon-shortcut" rel="shortcut icon" href="/favicon-free.ico" type="image/x-icon">
+<link id="favicon-icon" rel="icon" href="/favicon-free.ico" type="image/x-icon">
 </head>
 <body>
 </body>
