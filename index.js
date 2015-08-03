@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var storagePath = "./toilet_status.txt"; // TODO: permission denied in /data
+var storagePath = "/data/toilet_status.txt";
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
